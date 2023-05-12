@@ -14,8 +14,8 @@ import task_list from './task_list.vue'
 var data = [
     {
         id: '1',
-        text: '主线',
-        desc: '',
+        title: '主线',
+        text: '',
         award: {},
         state: 'running',
         have_child: true,
@@ -28,8 +28,8 @@ var data = [
         children: [
             {
                 id: '5',
-                text: '主线',
-                desc: '',
+                title: '主线',
+                text: '',
                 award: {},
                 state: 'running',
                 have_child: true,
@@ -42,8 +42,8 @@ var data = [
                 children: [
                     {
                         id: '6',
-                        text: 'test',
-                        desc: '',
+                        title: 'test',
+                        text: '',
                         award: {},
                         state: 'running',
                         have_child: false,
@@ -61,8 +61,8 @@ var data = [
     },
     {
         id: '2',
-        text: '支线',
-        desc: '',
+        title: '支线',
+        text: '',
         award: {},
         state: 'running',
         have_child: false,
@@ -76,8 +76,8 @@ var data = [
     },
     {
         id: '3',
-        text: '每日任务',
-        desc: '',
+        title: '每日任务',
+        text: '',
         award: {},
         state: 'running',
         have_child: false,
@@ -91,8 +91,8 @@ var data = [
     },
     {
         id: '4',
-        text: '计划任务',
-        desc: '',
+        title: '计划任务',
+        text: '',
         award: {},
         state: 'running',
         have_child: false,

@@ -1,9 +1,9 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { defineComponent } from 'vue';
+import { MouseMenuDirective, MouseMenuCtx } from '@howdyjs/mouse-menu';
 // import HelloWorld from './components/HelloWorld.vue'
-import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
-import task_main from './views/task_main.vue'
-</script>
+</script> -->
 
 
 
@@ -35,15 +35,29 @@ import task_main from './views/task_main.vue'
             <el-aside class="side">
                 <el-menu>
                     <RouterLink to="/">
-                        <el-menu-item>任务</el-menu-item>
+                        <el-menu-item>
+                            <el-icon>
+                                <Calendar />
+                            </el-icon>
+                            任务
+                        </el-menu-item>
                     </RouterLink>
                     <RouterLink to="/log">
-                        <el-menu-item>日志</el-menu-item>
+                        <el-menu-item>
+                            <el-icon>
+                                <Memo />
+                            </el-icon>
+                            日志
+                        </el-menu-item>
                     </RouterLink>
                     <RouterLink to="/set">
-                        <el-menu-item>设置</el-menu-item>
+                        <el-menu-item>
+                            <el-icon>
+                                <Setting />
+                            </el-icon>
+                            设置
+                        </el-menu-item>
                     </RouterLink>
-
                 </el-menu>
             </el-aside>
 
@@ -59,13 +73,18 @@ import task_main from './views/task_main.vue'
 
 
 <script lang="ts">
-export default {
+import { RouterLink, RouterView } from 'vue-router'
+import { defineComponent } from 'vue';
+import { MouseMenuDirective, MouseMenuCtx } from '@howdyjs/mouse-menu';
+
+export default defineComponent({
     data() {
         return {
-            count: 0,
+
         }
-    }
-}
+    },
+    
+})
 </script>
 
 <style scoped>
@@ -88,5 +107,15 @@ export default {
 
 .container {
     height: 95%;
+}
+
+.router-link-active {
+    text-decoration: none;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
 }
 </style>

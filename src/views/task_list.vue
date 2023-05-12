@@ -1,6 +1,6 @@
-<script setup lang="ts">
-// import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
-</script>
+<!-- <script setup lang="ts">
+import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
+</script> -->
 
 
 <template>
@@ -21,10 +21,10 @@
                 </el-menu-item>
             </el-sub-menu>
             <el-menu-item>test</el-menu-item> -->
-    <template v-for="item in children" :key="key">
+    <div v-for="item in children" :key="key" v-mouse-menu="{params: item, ...options}">
         <el-sub-menu v-if="item.have_child" :index="item.id" @click.stop="select(item)">
             <template #title>
-                {{ item.text }}
+                {{ item.title }}
             </template>
             <div @click.stop>
                 <el-menu-item v-if="!item.get_child">
@@ -39,22 +39,59 @@
         </el-sub-menu>
         <div @click.stop>
             <el-menu-item v-if="!item.have_child" :index="item.id" @click="select(item)">
-                {{ item.text }}
+                {{ item.title }}
             </el-menu-item>
         </div>
 
-    </template>
+    </div>
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent, ref } from 'vue';
+import { MouseMenuDirective, MouseMenuCtx } from '@howdyjs/mouse-menu';
+
+export default defineComponent({
     name: 'task_list',
     props: ['children', 'select', 'key', 'openeds'],
     data() {
         return {
-            
+
         }
     },
-}
+    directives: {
+        MouseMenu: MouseMenuDirective
+    },
+    setup() {
+        const list = ref([]);
+
+        return {
+            list,
+            options: {
+                useLongPressInMobile: true,
+                menuList: [
+                    // {
+                    //     label: (params: any) => `#${params.userName}`,
+                    //     disabled: true
+                    // },
+                    {
+                        label: '编辑',
+                        tips: 'Edit',
+                        fn: (row: any, ...args: []) => console.log('edit', row, args),
+                    },
+                    {
+                        label: '停用',
+                        tips: 'Stop',
+                        fn: (row: any, ...args: []) => console.log('stop', row, args),
+                    },
+                    {
+                        label: '删除',
+                        tips: 'Delete',
+                        fn: (row: any, ...args: []) => console.log('delete', row, args)
+                    }
+                ]
+            }
+        };
+    }
+})
 
 </script>
