@@ -1,29 +1,18 @@
 <script setup lang="ts">
-    import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
+// import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
 </script>
 
 
 <template>
-    <el-scrollbar>
-        <el-menu>
-            <el-sub-menu index="1">
+    <!-- <el-sub-menu index="1">
                 <template #title>
                     主线任务
                 </template>
-                <el-menu-item-group>
-                    <template #title>Group 1</template>
-                    <el-menu-item index="1-1">Option 1</el-menu-item>
-                    <el-menu-item index="1-2">Option 2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group 2">
-                    <el-menu-item index="1-3">Option 3</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="1-4">
-                    <template #title>Option4</template>
-                    <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
-                </el-sub-menu>
+                <el-menu-item>Option 1</el-menu-item>
+                <el-menu-item>Option 2</el-menu-item>
+                <el-menu-item>Option 3</el-menu-item>
             </el-sub-menu>
-            <el-sub-menu>
+            <el-sub-menu index="2">
                 <template #title>
                     支线任务
                 </template>
@@ -31,27 +20,41 @@
                     123
                 </el-menu-item>
             </el-sub-menu>
-        </el-menu>
-    </el-scrollbar>
+            <el-menu-item>test</el-menu-item> -->
+    <template v-for="item in children" :key="key">
+        <el-sub-menu v-if="item.have_child" :index="item.id" @click.stop="select(item)">
+            <template #title>
+                {{ item.text }}
+            </template>
+            <div @click.stop>
+                <el-menu-item v-if="!item.get_child">
+                    <el-icon class="is-loading">
+                        <Loading />
+                    </el-icon>
+                    加载中
+                </el-menu-item>
+            </div>
+            <task_list v-if="item.get_child" :key="key" :openeds="openeds" :children="item.children" :select="select">
+            </task_list>
+        </el-sub-menu>
+        <div @click.stop>
+            <el-menu-item v-if="!item.have_child" :index="item.id" @click="select(item)">
+                {{ item.text }}
+            </el-menu-item>
+        </div>
+
+    </template>
 </template>
 
 <script lang="ts">
-var main_task = [
-    {
-
-    }
-]
-
-var data = {
-
-}
-
 export default {
+    name: 'task_list',
+    props: ['children', 'select', 'key', 'openeds'],
     data() {
         return {
-
+            
         }
-    }
+    },
 }
 
 </script>
