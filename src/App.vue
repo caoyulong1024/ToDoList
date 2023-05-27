@@ -96,7 +96,7 @@ export default defineComponent({
 }
 
 .side {
-    width: 10%;
+    width: 8%;
     height: 100%;
 }
 
